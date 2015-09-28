@@ -15,11 +15,20 @@ cxense.prototype = {
     },
 
     init: function(configuration) {
-        $.extend(this.configuration, configuration);
+        // merge cxense.configuration with configuration var
+        for (var attrname in configuration)
+        {
+            this.configuration[attrname] = configuration[attrname];
+        }
+        //console.log('dmpPersistedQueryId:'+this.configuration.dmpPersistedQueryId);
         return this;
     },
 
     load: function() {
+        // do not delete this - start
+            cxProfileConfiguration = this.configuration;
+            cX = window.cX;
+        // do not delete this - end
         function onCxReady() {
 
             if (typeof JSON == 'undefined') {
@@ -166,7 +175,6 @@ cxense.prototype = {
             // set a cookie
             cX.setCookie('cx_profile_data', cookieStr, cookieTimeout);
         }
-
         var cX = cX || {}; cX.callQueue = cX.callQueue || [];
         cX.callQueue.push(['invoke', onCxReady]);
     }
