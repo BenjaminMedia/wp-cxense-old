@@ -51,6 +51,7 @@ function implementMainScript(){
 
     $scriptUrl = plugin_dir_url(__FILE__).'js/cxenseImplementation.js';
     $script = "<script type='text/javascript' src='$scriptUrl' ></script>";
+    $script .= "<script type='text/javascript' src='http://eas4.emediate.eu/EAS_tag.1.0.js' ></script>";
     echo $script;
 
 }
