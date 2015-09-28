@@ -7,12 +7,10 @@
     Author URI: http://bonnierpublications.com
 */
 
-require_once("admin.php");
+require_once(__DIR__."/admin.php");
 
-function getOptionOrDefaultCXense($option, $defaultValue = NULL) {
-    $themeHook = get_option('wp-cxense-' . $option, NULL );
-    return (empty($themeHook)) ? $defaultValue : $themeHook;
-}
+
+
 
 function configurationDisplay(){
     return array(
@@ -25,9 +23,8 @@ function configurationDisplay(){
 }
 
 function implementScripts() {
-    implementMainScript();
-    implementDisplay();
     implementTracking();
+    implementDisplay();
 }
 
 
@@ -37,8 +34,7 @@ function implementScripts() {
 function implementDisplay() {
 
     $configuration = configurationDisplay();
-    //TODO: remove hardcoded persistedQueryId
-    $configuration['dmpPersistedQueryId'] = 'a7ec4be7a20a21f8a39687794f04544586ad18a4';
+
     if($configuration['dmpPersistedQueryId'] != false) {
 
         $cxenseDisplayScript = "
@@ -58,21 +54,20 @@ function implementMainScript(){
 function implementTracking(){
 
     $siteId = getOptionOrDefaultCXense('siteId', false);
-    //TODO: remove hardcoded $siteId
-    $siteId = 1137301316753198952;
+
     if($siteId) {
 
         $cxenseTracking = "
         <!-- Cxense script begin -->
         <script type='text/javascript''>
-        var cX = cX || {}; cX.callQueue = cX.callQueue || [];
-        cX.callQueue.push(['setSiteId', '$siteId']);
-        cX.callQueue.push(['sendPageViewEvent']);
+            var cX = cX || {}; cX.callQueue = cX.callQueue || [];
+            cX.callQueue.push(['setSiteId', '$siteId']);
+            cX.callQueue.push(['sendPageViewEvent']);
         </script>
         <script type='text/javascript'>
-                (function(d,s,e,t){e=d.createElement(s);e.type='text/java'+s;e.async='async';
-                    e.src='http'+('https:'===location.protocol?'s://s':'://')+'cdn.cxense.com/cx.js';
-                    t=d.getElementsByTagName(s)[0];t.parentNode.insertBefore(e,t);})(document,'script');
+            (function(d,s,e,t){e=d.createElement(s);e.type='text/java'+s;e.async='async';
+                e.src='http'+('https:'===location.protocol?'s://s':'://')+'cdn.cxense.com/cx.js';
+                t=d.getElementsByTagName(s)[0];t.parentNode.insertBefore(e,t);})(document,'script');
         </script>
         <!-- Cxense script end -->";
         echo $cxenseTracking;
@@ -81,5 +76,5 @@ function implementTracking(){
 
 }
 
-add_action('wp_footer','implementScripts',1200);
+add_action('wp_footer','implementScripts', 1200);
 add_action('wp_enqueue_scripts','implementMainScript');
