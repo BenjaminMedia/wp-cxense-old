@@ -41,14 +41,18 @@ function implementDisplay() {
             <script>
                 var something = new cxense(" . json_encode($configuration) . ");
                 something.load();
-            </script>";
+            </script>
+            ";
         echo  $cxenseDisplayScript;
     }
 }
 
 function implementMainScript(){
-    wp_register_script('cxenseImplementation', plugin_dir_url(__FILE__).'js/cxenseImplementation.js', null);
-    wp_enqueue_script('cxenseImplementation');
+
+    $scriptUrl = plugin_dir_url(__FILE__).'js/cxenseImplementation.js';
+    $script = "<script type='text/javascript' src='$scriptUrl' ></script>";
+    echo $script;
+
 }
 
 function implementTracking(){
