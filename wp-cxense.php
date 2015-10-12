@@ -15,7 +15,7 @@ require_once(__DIR__."/admin.php");
 function configurationDisplay(){
     return array(
         'interestPersistedQueryId' => getOptionOrDefaultCXense('interestPersistedQueryId', false),
-        'interestedCategories' => getOptionOrDefaultCXense('interestedCategories', []),
+        'interestedCategories' => getOptionOrDefaultCXense('interestedCategories', null),
         'interestsNumber' => getOptionOrDefaultCXense('interestsNumber', 1),
         'minWeight' => 0,
         'dmpPersistedQueryId' => getOptionOrDefaultCXense('dmpPersistedQueryId',false)
