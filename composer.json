@@ -1,0 +1,11 @@
+{
+  "name": "benjaminmedia/wp-cxense",
+  "type": "wordpress-plugin",
+  "homepage": "https://github.com/BenjaminMedia/wp-cxense",
+  "license": "GPLv3",
+  "description": "Adds scripts for enabling cxense tracking on your blog",
+  "keywords": ["plugin","cxense"],
+  "require": {
+    "composer/installers": "~1.0.6"
+  }
+}
