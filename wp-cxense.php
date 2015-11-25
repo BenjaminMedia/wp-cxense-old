@@ -64,7 +64,7 @@ function implementTracking(){
 
         $cxenseTracking = "
         <!-- Cxense script begin -->
-        <script type='text/javascript''>
+        <script type='text/javascript'>
             var cX = cX || {}; cX.callQueue = cX.callQueue || [];
             cX.callQueue.push(['setSiteId', '$siteId']);
             cX.callQueue.push(['sendPageViewEvent']);
